@@ -1,97 +1,101 @@
-# GSM SMS Sender (GSM SMS-Sender)
+# GSM SMS Sender
 
-Ein duales System zur SMS-Versendung mit Arduino und Python. Dieses Projekt ermöglicht das Senden von SMS-Nachrichten über ein GSM-Modul, das mit Arduino verbunden ist und durch eine Python-Schnittstelle gesteuert wird.
+A dual system for sending SMS messages using Arduino and Python. This project allows sending SMS messages via a GSM module connected to an Arduino, controlled by a Python interface.
 
-## Komponenten (Komponenten)
+## Components
 
 - Arduino (Uno/Nano/Mega)
-- GSM-Modul (SIM800L/SIM900)
-- Jumper-Kabel
-- USB-Kabel
-- SIM-Karte
-- Computer mit Python und Arduino IDE
+- GSM Module (SIM800L/SIM900)
+- Jumper wires
+- USB cable
+- SIM card
+- Computer with Python and Arduino IDE
 
-## Verbindungsschema (Anschlussplan) 
+## Wiring Diagram
 
-Arduino GSM-Modul
-7 (TX) -> RX
-8 (RX) -> TX
-5V -> VCC (oder externe Stromversorgung)
-GND -> GND
+| Arduino Pin  | GSM Module Pin |
+|--------------|----------------|
+| 7 (TX)       | RX             |
+| 8 (RX)       | TX             |
+| 5V           | VCC (or external power supply) |
+| GND          | GND            |
 
-
-⚠️ **Wichtig**: Das GSM-Modul kann einen hohen Stromverbrauch haben. Eine externe Stromversorgung wird empfohlen.
+⚠️ **Important**: The GSM module can have high power consumption. It is recommended to use an external power supply.
 
 ## Installation
 
-1. **Arduino-Setup**
-   - Arduino IDE installieren
-   - SoftwareSerial-Bibliothek installieren (standardmäßig enthalten)
-   - `GSM_SMS_Arduino.ino` auf den Arduino hochladen
+### 1. Arduino Setup
+- Install the Arduino IDE.
+- Install the SoftwareSerial library (included by default).
+- Upload `GSM_SMS_Arduino.ino` to the Arduino.
 
-2. **Python-Setup**
+### 2. Python Setup
+Install the required Python package for serial communication:
+
+```bash
+pip install pyserial
+```
+
+## Usage
+
+1. Connect the hardware according to the wiring diagram.
+2. Upload the Arduino code.
+3. Run the Python script:
    ```bash
-   pip install pyserial
+   python gsm_sms_sender.py
    ```
+4. Enter the phone number and message.
+5. Send the SMS.
 
-## Verwendung (Verwendung)
+## Project Files
 
-1. Hardware anschließen gemäß Verbindungsschema
-2. Arduino-Code hochladen
-3. Python-Skript ausführen:
-   ```bash
-   python gsm_sms_gonderici.py
-   ```
-4. Telefonnummer und Nachricht eingeben
-5. SMS senden
+- `GSM_SMS_Arduino.ino` - Arduino code for controlling the GSM module.
+- `gsm_sms_sender.py` - Python interface for user input and serial communication.
 
-## Dateien im Projekt
+## Features
 
-- `GSM_SMS_Arduino.ino` - Arduino-Code für die GSM-Modul-Steuerung
-- `gsm_sms_gonderici.py` - Python-Interface für die Benutzereingabe und serielle Kommunikation
+### Arduino Code
+- GSM module initialization.
+- Handling AT commands.
+- Serial communication between Python and the GSM module.
 
-## Funktionen
+### Python Code
+- User-friendly input interface.
+- Serial communication with Arduino.
+- Error handling and status messages.
 
-### Arduino-Code
-- Initialisierung des GSM-Moduls
-- AT-Befehle Handling
-- Serielle Kommunikation zwischen Python und GSM-Modul
+## Troubleshooting
 
-### Python-Code
-- Benutzerfreundliche Eingabeschnittstelle
-- Serielle Kommunikation mit Arduino
-- Fehlerbehandlung und Statusmeldungen
+1. **No connection to the GSM module:**
+   - Check the power supply.
+   - Verify TX/RX connections.
+   - Ensure the SIM card is properly inserted.
 
-## Fehlerbehebung
+2. **Communication errors:**
+   - Check the COM port in the Python script.
+   - Make sure the baud rate is correct (9600).
 
-1. **Keine Verbindung zum GSM-Modul**
-   - Überprüfen Sie die Stromversorgung
-   - Überprüfen Sie die TX/RX-Verbindungen
-   - Stellen Sie sicher, dass die SIM-Karte korrekt eingesetzt ist
+## License
 
-2. **Kommunikationsfehler**
-   - Überprüfen Sie den COM-Port in der Python-Datei
-   - Stellen Sie sicher, dass die Baudrate korrekt ist (9600)
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## Lizenz
+## Contributing
 
-Dieses Projekt steht unter der MIT-Lizenz. Siehe `LICENSE` Datei für Details.
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a pull request.
 
-## Beitragen
+## Project Structure
 
-1. Fork das Projekt
-2. Erstelle einen Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit deine Änderungen (`git commit -m 'Add some AmazingFeature'`)
-4. Push zum Branch (`git push origin feature/AmazingFeature`)
-5. Öffne einen Pull Request
-
-## Projektstruktur
-
-
+```bash
 GSM-SMS-Sender/
 ├── README.md
 ├── LICENSE
 ├── arduino/
-│ └── GSM_SMS_Arduino.ino
+│   └── GSM_SMS_Arduino.ino
 └── python/
-└── gsm_sms_sender.py
+    └── gsm_sms_sender.py
+```
+
